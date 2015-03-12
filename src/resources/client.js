@@ -12,14 +12,15 @@ html2canvas(document.body).then(function(canvas){
 	background.appendChild(canvas).id = "LCDegausserImg";
 	var element = document.getElementById("LCDegausserImg");
 
-	// var dgSFX = new Audio();
-	// dgSFX.src = "resources/degauss.ogg";
-	// dgSFX.play();
-
-	element.classList.add("degauss");
+	var dgSFX = new Audio();
+	dgSFX.src = document.getElementById("deguassSoundURL").innerHTML;
+	dgSFX.play();
 
 	window.setTimeout(function () {
-		document.body.removeChild(document.getElementById("LCDegausserHouser"));
-	}, 600);
+		element.classList.add("degauss");
 
+		window.setTimeout(function () {
+			document.body.removeChild(document.getElementById("LCDegausserHouser"));
+		}, 600);
+	}, 20);
 });
