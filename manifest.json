@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "LCDegauss",
+  "description": "Do you miss the joy of degaussing that CRT monitor? LCDegauss can help with that!",
+  "version": "0.1",
+
+  "browser_action": {
+    "default_icon": "resources/icon.png",
+    "default_title": "Degauss me!"
+  },
+  "background": {
+    "scripts": ["degauss.js"],
+    "persistent": false
+  },
+  "web_accessible_resources": ["resources/client.js", "resources/degauss.ogg"],
+  "permissions": [
+    "activeTab"
+  ]
+}
