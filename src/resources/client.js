@@ -6,21 +6,40 @@ L.prototype.getMetrics=function(a,b){return this.data[a+"-"+b]===f&&(this.data[a
 
 
 
+var ready = false;
+var fakeScreen;
+
+document.body.classList.add("needToDegauss");
+window.setTimeout(function() {
+	if (ready)
+		startDegauss();
+	else
+		ready = true;
+}, 500);
+
 html2canvas(document.body).then(function(canvas){
 	document.body.appendChild(document.createElement("div")).id = "LCDegausserHouser";
 	var background = document.getElementById("LCDegausserHouser");
 	background.appendChild(canvas).id = "LCDegausserImg";
-	var element = document.getElementById("LCDegausserImg");
+	fakeScreen = document.getElementById("LCDegausserImg");
 
+	if (ready)
+		startDegauss();
+	else
+		ready = true;
+});
+
+function startDegauss () {
 	var dgSFX = new Audio();
 	dgSFX.src = document.getElementById("deguassSoundURL").innerHTML;
 	dgSFX.play();
 
 	window.setTimeout(function () {
-		element.classList.add("degauss");
+		fakeScreen.classList.add("degauss");
 
 		window.setTimeout(function () {
+			document.body.classList.remove("needToDegauss");
 			document.body.removeChild(document.getElementById("LCDegausserHouser"));
-		}, 600);
+		}, 700);
 	}, 20);
-});
+}
