@@ -15,7 +15,7 @@ window.setTimeout(function() {
 		startDegauss();
 	else
 		ready = true;
-}, 500);
+}, 600);
 
 html2canvas(document.body).then(function(canvas){
 	document.body.appendChild(document.createElement("div")).id = "LCDegausserHouser";
@@ -30,6 +30,8 @@ html2canvas(document.body).then(function(canvas){
 });
 
 function startDegauss () {
+	document.body.classList.remove("needToDegauss");
+	
 	var dgSFX = new Audio();
 	dgSFX.src = document.getElementById("deguassSoundURL").innerHTML;
 	dgSFX.play();
@@ -38,7 +40,6 @@ function startDegauss () {
 		fakeScreen.classList.add("degauss");
 
 		window.setTimeout(function () {
-			document.body.classList.remove("needToDegauss");
 			document.body.removeChild(document.getElementById("LCDegausserHouser"));
 		}, 700);
 	}, 20);
